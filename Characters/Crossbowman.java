@@ -8,7 +8,7 @@ public class Crossbowman extends RangedFighterType {
     }
 
     public Crossbowman(Cell pos, String name) {
-        super(pos, name, 75, 75, 8, 5);
+        super(pos, name, 75, 75, 8, 5, 10);
     }
 
     @Override

@@ -8,7 +8,7 @@ public class Sniper extends RangedFighterType {
     }
 
     public Sniper(Cell pos, String name) {
-        super(pos, name, 90, 90, 2, 10);
+        super(pos, name, 90, 90, 2, 10, 5);
     }
 
     @Override
