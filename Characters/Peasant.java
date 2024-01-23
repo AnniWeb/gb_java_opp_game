@@ -1,12 +1,13 @@
 package Characters;
 
+import Map.Cell;
+
 public class Peasant extends Character {
     String getCharacterTypeName() {
         return "Крестьянин";
     }
 
-    public Peasant(String name) {
-        super(name, 40, 40, 0);
+    public Peasant(Cell pos, String name) {
+        super(pos, name, 40, 40, 0);
     }
-    
 }

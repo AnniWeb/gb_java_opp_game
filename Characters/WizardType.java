@@ -1,12 +1,14 @@
 package Characters;
 
+import Map.Cell;
+
 public abstract class WizardType extends Character {
     protected int mana;
     protected int maxMana;
     protected int iq;
 
-    public WizardType(String name, int hp, int maxHp, int armor, int mana, int maxMana, int iq) {
-        super(name, hp, maxHp, armor);
+    public WizardType(Cell pos, String name, int hp, int maxHp, int armor, int mana, int maxMana, int iq) {
+        super(pos, name, hp, maxHp, armor);
         this.mana = mana;
         this.maxMana = maxMana;
         this.iq = iq;

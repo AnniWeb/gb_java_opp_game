@@ -1,11 +1,13 @@
 package Characters;
 
+import Map.Cell;
+
 public abstract class MeleeFighterType extends Character
 {
     protected int strength;
 
-    public MeleeFighterType(String name, int hp, int maxHp, int armor, int strength) {
-        super(name, hp, maxHp, armor);
+    public MeleeFighterType(Cell pos, String name, int hp, int maxHp, int armor, int strength) {
+        super(pos, name, hp, maxHp, armor);
         this.strength = strength;
     }
 

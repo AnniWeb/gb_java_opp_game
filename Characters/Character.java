@@ -1,5 +1,7 @@
 package Characters;
 
+import Map.Cell;
+
 /**
  * Character
  */
@@ -8,12 +10,14 @@ public abstract class Character implements CharacterInterface {
     protected int hp;
     protected int maxHp;
     protected int armor;
+    protected Cell position;
 
-    public Character (String name, int hp, int maxHp, int armor) {
+    public Character (Cell pos, String name, int hp, int maxHp, int armor) {
         this.name = name;
         this.hp = hp;
         this.maxHp = maxHp;
         this.armor = armor;
+        this.position = pos;
     }
 
     abstract String getCharacterTypeName();
@@ -21,6 +25,11 @@ public abstract class Character implements CharacterInterface {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public Cell getPosition() {
+        return position;
     }
 
     @Override

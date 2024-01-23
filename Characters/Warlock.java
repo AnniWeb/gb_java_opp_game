@@ -1,12 +1,14 @@
 package Characters;
 
+import Map.Cell;
+
 public class Warlock extends WizardType {
     String getCharacterTypeName() {
         return "Колдун";
     }
 
-    public Warlock(String name) {
-        super(name, 70, 70, 2, 50, 100, 15);
+    public Warlock(Cell pos, String name) {
+        super(pos, name, 70, 70, 2, 50, 100, 15);
     }
 
     @Override
