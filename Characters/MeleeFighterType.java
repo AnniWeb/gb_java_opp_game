@@ -7,7 +7,7 @@ public abstract class MeleeFighterType extends Character
     protected int strength;
 
     public MeleeFighterType(Cell pos, String name, int hp, int maxHp, int armor, int strength) {
-        super(pos, name, hp, maxHp, armor);
+        super(pos, name, 2, hp, maxHp, armor);
         this.strength = strength;
     }
 

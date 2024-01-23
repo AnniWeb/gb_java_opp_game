@@ -1,5 +1,7 @@
 package Characters;
 
+import java.util.ArrayList;
+
 import Map.Cell;
 
 /**
@@ -10,17 +12,25 @@ public abstract class Character implements CharacterInterface {
     protected int hp;
     protected int maxHp;
     protected int armor;
+    protected int initiative;
     protected Cell position;
 
-    public Character (Cell pos, String name, int hp, int maxHp, int armor) {
+    public Character (Cell pos, String name, int initiative, int hp, int maxHp, int armor) {
         this.name = name;
+        this.position = pos;
+        this.initiative = initiative;
+
         this.hp = hp;
         this.maxHp = maxHp;
         this.armor = armor;
-        this.position = pos;
     }
 
     abstract String getCharacterTypeName();
+
+    @Override
+    public Integer getInitiative() {
+        return initiative;
+    }
 
     @Override
     public String getName() {
@@ -32,23 +42,23 @@ public abstract class Character implements CharacterInterface {
         return position;
     }
 
-    @Override
-    public void attack(CharacterInterface target)
-    {
-        System.out.println("Метод атаки в разработке");
-    }
+    // @Override
+    // public void attack(CharacterInterface target)
+    // {
+    //     System.out.println("Метод атаки в разработке");
+    // }
 
-    @Override
-    public void healing(CharacterInterface target)
-    {
-        System.out.println("Метод лечения в разработке");
-    }
+    // @Override
+    // public void healing(CharacterInterface target)
+    // {
+    //     System.out.println("Метод лечения в разработке");
+    // }
     
-    @Override
-    public void moveTo()
-    {
-        System.out.println("Метод передвижения в разработке");
-    }
+    // @Override
+    // public void moveTo()
+    // {
+    //     System.out.println("Метод передвижения в разработке");
+    // }
 
     @Override
     public String toString() {
@@ -56,12 +66,12 @@ public abstract class Character implements CharacterInterface {
     }
 
     @Override
-    public void step() {
-        System.out.println("Метод в разработке");
+    public Boolean isAlive() {
+        return hp > 0;
     }
 
     @Override
-    public boolean isAlive() {
-        return hp > 0;
+    public void step(ArrayList<CharacterInterface> friends, ArrayList<CharacterInterface> enemies) {
+        System.out.println(this + " пропускает ход");
     }
 }

@@ -8,6 +8,6 @@ public class Peasant extends Character {
     }
 
     public Peasant(Cell pos, String name) {
-        super(pos, name, 40, 40, 0);
+        super(pos, name, 0, 40, 40, 0);
     }
 }

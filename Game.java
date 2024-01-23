@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import Characters.CharacterInterface;
 import Characters.Crossbowman;
@@ -20,39 +22,36 @@ public class Game {
     private static GameMap map;
 
     public static void main(String[] args) {
+        int step = 0;
         map = new GameMap(COUNT_CHARACTERS);
         ArrayList<CharacterInterface> team1 = genereateTeam(true);
         ArrayList<CharacterInterface> team2 = genereateTeam(false);
 
+        ArrayList<Hero> heros = new ArrayList<Hero>();
+        team1.forEach(item -> heros.add(new Hero(item, team1, team2)));
+        team2.forEach(item -> heros.add(new Hero(item, team2, team1)));
+
         System.out.println("Игра началась");
-        System.out.println("Команда 1:");
-        team1.forEach(person -> System.out.println(person));
-        System.out.println("");
-        System.out.println("Команда 2:");
-        team2.forEach(person -> System.out.println(person));
+        // System.out.println("Команда 1:");
+        // team1.forEach(person -> System.out.println(person));
+        // System.out.println("");
+        // System.out.println("Команда 2:");
+        // team2.forEach(person -> System.out.println(person));
 
         System.out.println("Позиции:");
         map.printMap();
 
-        System.out.println("Цели для стрелков:");
-        printRangedTarget(team1, team2);
-        printRangedTarget(team2, team1);
+        System.out.println("");
+        
+        System.out.println("Шаг " + ++step);
+        heros.sort((hero1, hero2) -> hero2.getInitiative() - hero1.getInitiative());
+        heros.forEach(hero -> hero.step());
+
+        System.out.println("");
+        System.out.println("Позиции:");
+        map.printMap();
 
         System.out.println("Игра закончилась");
-    }
-
-    private static void printRangedTarget(ArrayList<CharacterInterface> army, ArrayList<CharacterInterface> targets)
-    {
-        for (CharacterInterface hero : army) {
-            if (hero instanceof RangedFighterType) {
-                CharacterInterface enemy = ((RangedFighterType)hero).findNearestEnemy(targets);
-                if (enemy == null){
-                    System.out.println(hero + ": не видит врагов");
-                } else {
-                    System.out.println("Ближайшая цель " + hero + " -> " + enemy);
-                }
-            }
-        }
     }
 
     private static ArrayList<CharacterInterface> genereateTeam(boolean sideLeft)

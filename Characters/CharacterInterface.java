@@ -1,5 +1,7 @@
 package Characters;
 
+import java.util.ArrayList;
+
 import Map.Cell;
 
 public interface CharacterInterface {
@@ -8,13 +10,9 @@ public interface CharacterInterface {
 
     Cell getPosition();
 
-    void attack(CharacterInterface target);
+    Boolean isAlive();
 
-    void healing(CharacterInterface target);
-    
-    void moveTo();
+    Integer getInitiative();
 
-    void step();
-
-    boolean isAlive();
+    void step(ArrayList<CharacterInterface> friends, ArrayList<CharacterInterface> enemies);
 }

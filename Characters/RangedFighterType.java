@@ -10,7 +10,7 @@ public abstract class RangedFighterType extends Character
     protected int ammunition;
 
     public RangedFighterType(Cell pos, String name, int hp, int maxHp, int armor, int agility, int ammunition) {
-        super(pos, name, hp, maxHp, armor);
+        super(pos, name, 3, hp, maxHp, armor);
         this.agility = agility;
         this.ammunition = ammunition;
     }
@@ -27,20 +27,24 @@ public abstract class RangedFighterType extends Character
      * Атаковать выстрелом цель
      * @param target
      */
-    abstract void performRangedAttack(CharacterInterface target);
+    private void performRangedAttack(CharacterInterface target) {
+        ammunition--;
+        System.out.println(this + ": выстрелил в " + target + "; осталось снарядоd: " + ammunition);
+        // Todo: реализация нанесения урона
+    }
 
     /**
      * Запросить снаряды у цели
      * @param target
      */
-    abstract void requestAmmunition(CharacterInterface target);
+    // abstract void requestAmmunition(CharacterInterface target);
 
     /**
      * Проверить наличие снарядок
      * @param target
      * @return
      */
-    abstract boolean checkAmmunition(CharacterInterface target);
+    // abstract boolean checkAmmunition(CharacterInterface target);
 
     /**
      * Найти ближайщего противника
@@ -58,7 +62,7 @@ public abstract class RangedFighterType extends Character
                 continue;
             }
             double dist = position.calculateDistance(enemies.get(i).getPosition());
-            if (minDist > dist) {
+            if (minDist == 0 || minDist > dist) {
                 minDist = dist;
                 enemy = enemies.get(i);
             }
@@ -67,10 +71,14 @@ public abstract class RangedFighterType extends Character
     }
 
     @Override
-    public void step() {
-        if (!isAlive() || ammunition <= 0) {
-            return;
+    public void step(ArrayList<CharacterInterface> friends, ArrayList<CharacterInterface> enemies) {
+        if (isAlive()){
+            if (ammunition > 0){
+                CharacterInterface enemy = findNearestEnemy(enemies);
+                if (enemy != null) {
+                    performRangedAttack(enemy);
+                }
+            }
         }
-        CharacterInterface enemy = 
     }
 }
