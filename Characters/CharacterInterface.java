@@ -13,4 +13,8 @@ public interface CharacterInterface {
     void healing(CharacterInterface target);
     
     void moveTo();
+
+    void step();
+
+    boolean isAlive();
 }

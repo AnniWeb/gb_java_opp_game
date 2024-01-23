@@ -54,4 +54,14 @@ public abstract class Character implements CharacterInterface {
     public String toString() {
         return getCharacterTypeName() + ": " + getName();
     }
+
+    @Override
+    public void step() {
+        System.out.println("Метод в разработке");
+    }
+
+    @Override
+    public boolean isAlive() {
+        return hp > 0;
+    }
 }
