@@ -3,6 +3,7 @@ package Characters;
 import java.util.ArrayList;
 
 import Map.Cell;
+import Map.GameMap;
 
 /**
  * Character
@@ -53,12 +54,6 @@ public abstract class Character implements CharacterInterface {
     // {
     //     System.out.println("Метод лечения в разработке");
     // }
-    
-    // @Override
-    // public void moveTo()
-    // {
-    //     System.out.println("Метод передвижения в разработке");
-    // }
 
     @Override
     public String toString() {
@@ -71,7 +66,30 @@ public abstract class Character implements CharacterInterface {
     }
 
     @Override
-    public void step(ArrayList<CharacterInterface> friends, ArrayList<CharacterInterface> enemies) {
+    public void step(GameMap map, ArrayList<CharacterInterface> friends, ArrayList<CharacterInterface> enemies) {
         System.out.println(this + " пропускает ход");
+    }
+
+    protected void moveTo(GameMap map, Cell target) {
+        if (position.getX() > target.getX() && moveTo(map, position.getX() - 1, position.getY())) {
+            System.out.println(this + " передвинулся вниз");
+        } else if (position.getX() < target.getX() && moveTo(map, position.getX() + 1, position.getY())) {
+            System.out.println(this + " передвинулся вверх");
+        } else if (position.getY() > target.getY() && moveTo(map, position.getX(), position.getY() - 1)) {
+            System.out.println(this + " передвинулся влево");
+        } else if (position.getY() < target.getY() && moveTo(map, position.getX(), position.getY() + 1)) {
+            System.out.println(this + " передвинулся вправо");
+        } else {
+            System.out.println(this + " не может двигаться");
+        }
+    }
+
+    private boolean moveTo(GameMap map, int x, int y) {
+        Cell newCell = new Cell(x, y);
+        if (map.moveTo(this, newCell.getX(), newCell.getY())) {
+            position = newCell;
+            return true;
+        }
+        return false;
     }
 }

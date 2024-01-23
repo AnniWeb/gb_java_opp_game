@@ -28,8 +28,8 @@ public class Game {
         ArrayList<CharacterInterface> team2 = genereateTeam(false);
 
         ArrayList<Hero> heros = new ArrayList<Hero>();
-        team1.forEach(item -> heros.add(new Hero(item, team1, team2)));
-        team2.forEach(item -> heros.add(new Hero(item, team2, team1)));
+        team1.forEach(item -> heros.add(new Hero(item, map, team1, team2)));
+        team2.forEach(item -> heros.add(new Hero(item, map, team2, team1)));
 
         System.out.println("Игра началась");
         // System.out.println("Команда 1:");

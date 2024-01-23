@@ -3,6 +3,7 @@ package Characters;
 import java.util.ArrayList;
 
 import Map.Cell;
+import Map.GameMap;
 
 public interface CharacterInterface {
 
@@ -14,5 +15,5 @@ public interface CharacterInterface {
 
     Integer getInitiative();
 
-    void step(ArrayList<CharacterInterface> friends, ArrayList<CharacterInterface> enemies);
+    void step(GameMap map, ArrayList<CharacterInterface> friends, ArrayList<CharacterInterface> enemies);
 }

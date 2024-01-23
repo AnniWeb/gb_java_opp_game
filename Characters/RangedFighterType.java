@@ -3,6 +3,7 @@ package Characters;
 import java.util.ArrayList;
 
 import Map.Cell;
+import Map.GameMap;
 
 public abstract class RangedFighterType extends Character
 {
@@ -71,7 +72,7 @@ public abstract class RangedFighterType extends Character
     }
 
     @Override
-    public void step(ArrayList<CharacterInterface> friends, ArrayList<CharacterInterface> enemies) {
+    public void step(GameMap map, ArrayList<CharacterInterface> friends, ArrayList<CharacterInterface> enemies) {
         if (isAlive()){
             if (ammunition > 0){
                 CharacterInterface enemy = findNearestEnemy(enemies);

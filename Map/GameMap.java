@@ -1,8 +1,4 @@
 package Map;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import Characters.CharacterInterface;
 
 public class GameMap {
@@ -23,7 +19,7 @@ public class GameMap {
     }
 
     private boolean isCellEmpty(int x, int y) {
-        return occupiedCells[x][y] == null;
+        return isValidCoordinate(x, y) && occupiedCells[x][y] == null;
     }
 
     public void printMap() {
@@ -49,12 +45,14 @@ public class GameMap {
         }
     }
 
-    public Object getObjectAt(int x, int y) {
-        if (isValidCoordinate(x, y)) {
-            return occupiedCells[x][y];
-        } else {
-            System.out.println("Invalid coordinates.");
-            return null;
+    public boolean moveTo(CharacterInterface figure, int x, int y) {
+        if (!isValidCoordinate(x, y) || !isCellEmpty(x, y)) {
+            return false;
         }
+
+        occupiedCells[x][y] = figure;
+        occupiedCells[figure.getPosition().getX()][figure.getPosition().getY()] = null;
+
+        return true;
     }
 }
